@@ -5,15 +5,15 @@ defmodule Tax do
   
   defp calculate_tax(order, tax_rates) do
     tax_rate = Keyword.get(tax_rates, Keyword.get(order, :ship_to), 0)
-	tax = Keyword.get(order, :net_amount) * tax_rate
-	total = Keyword.get(order, :net_amount) + tax
-	Keyword.put(order, :total_amount, total)
+    tax = Keyword.get(order, :net_amount) * tax_rate
+    total = Keyword.get(order, :net_amount) + tax
+    Keyword.put(order, :total_amount, total)
   end
   
   def add_tax_from_file(filename, tax_rates) do
     {:ok, file} = File.open(filename)
-	headers = file|>IO.read(:line)|>_split_line|>Enum.map(&String.to_atom(&1))
-	Enum.map(IO.stream(file, :line), &_create_one_row(&1, headers))|>add_tax(tax_rates)
+    headers = file|>IO.read(:line)|>_split_line|>Enum.map(&String.to_atom(&1))
+    Enum.map(IO.stream(file, :line), &_create_one_row(&1, headers))|>add_tax(tax_rates)
   end
   
   defp _split_line(line) do

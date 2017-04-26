@@ -1,8 +1,8 @@
 defmodule Chop do
   def guess(x, range=first..last) do
     guess = div(last+first,2)
-	IO.puts("Is it #{guess}")
-	helper(x, guess, range)
+    IO.puts("Is it #{guess}")
+    helper(x, guess, range)
   end
   
   def helper(x, x, _) do

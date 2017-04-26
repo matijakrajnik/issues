@@ -3,9 +3,9 @@ defmodule MyEnum do
   def all?([head | tail], func) do
     if func.(head) do
 	  all?(tail, func)
-	else
-	  false
-	end
+    else
+      false
+    end
   end
 
   def each([], _func), do: []
@@ -14,10 +14,10 @@ defmodule MyEnum do
   def filter([], _func), do: []
   def filter([head | tail], func) do
     if func.(head) do
-	  [head | filter(tail, func)]
-	else
-	  filter(tail, func)
-	end
+      [head | filter(tail, func)]
+    else
+      filter(tail, func)
+    end
   end
 
   def split(list, n) when n >= 0, do: _split(list, [], n)

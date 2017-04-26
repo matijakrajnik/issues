@@ -14,9 +14,9 @@ defmodule ControlFlow do
 
   def ok!(value) do
     case { value } do
-	  { {:ok, data} }  -> data
-	  { {_, message} } -> raise "Exception: #{message}"
-	  _                -> raise "Unpredicted exception occurred."
-	end
+      { {:ok, data} }  -> data
+      { {_, message} } -> raise "Exception: #{message}"
+      _                -> raise "Unpredicted exception occurred."
+    end
   end
 end

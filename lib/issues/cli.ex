@@ -9,8 +9,8 @@ defmodule Issues.Cli do
 
   def run(argv) do
     argv
-	|>parse_args
-	|>process
+    |>parse_args
+    |>process
   end
 
   @doc """
@@ -33,9 +33,9 @@ defmodule Issues.Cli do
   
   def process( :help ) do
     IO.puts """
-	usage: issues <user> <project> [ count | #{@default_count} ]
-	"""
-	System.halt(0)
+    usage: issues <user> <project> [ count | #{@default_count} ]
+    """
+    System.halt(0)
   end
   
   def process({ user, project, _count }) do
