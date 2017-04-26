@@ -38,7 +38,21 @@ defmodule Issues.Cli do
     System.halt(0)
   end
   
-  def process({ user, project, _count }) do
+  def process({ user, project, count }) do
     Issues.GithubIssues.fetch(user, project)
+    |>check_response
+    |>sort_data
+    |>Enum.take(count)
   end
+  
+  defp check_response({ :ok, body }), do: body
+  defp check_response({ :error, body }) do
+    message = body["message"]
+    IO.puts "Error while fetching data from GitHub: #{message}"
+    System.halt(2)
+  end
+  
+  defp sort_data(issues) do
+    issues|>Enum.sort(&(&1["created_at"] <= &2["created_at"]))
+  end  
 end
