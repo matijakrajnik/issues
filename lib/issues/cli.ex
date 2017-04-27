@@ -1,5 +1,6 @@
 defmodule Issues.Cli do
   @default_count 4
+  @columns_for_display ["number", "created_at", "title"]
   
   @moduledoc """
   Handle the command line parsing and the dispatch to
@@ -43,6 +44,7 @@ defmodule Issues.Cli do
     |>check_response
     |>sort_data
     |>Enum.take(count)
+    |>Issues.TableFormatter.display_result(@columns_for_display)
   end
   
   defp check_response({ :ok, body }), do: body
@@ -54,5 +56,5 @@ defmodule Issues.Cli do
   
   defp sort_data(issues) do
     issues|>Enum.sort(&(&1["created_at"] <= &2["created_at"]))
-  end  
+  end
 end
