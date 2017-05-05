@@ -5,6 +5,8 @@ defmodule Issues.Mixfile do
     [ app: :issues,
       escript: escript_config,
       version: "0.1.0",
+      name: "Issues",
+      source_url: "https://github.com/matijakrajnik/issues",
       elixir: "~> 1.4",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
