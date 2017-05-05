@@ -32,7 +32,9 @@ defmodule Issues.Mixfile do
   defp deps do
     [
       httpoison: "~> 0.11.1",
-      poison: "~> 3.0"
+      poison: "~> 3.0",
+      ex_doc: "~> 0.14",
+      earmark: ">= 0.0.0"
     ]
   end
   
