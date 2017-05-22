@@ -1,0 +1,18 @@
+defmodule Times do
+  defmacro times_n(n) do
+    func_name = :"times_#{n}"
+    quote do
+      def unquote(func_name)(multiplier), do: unquote(n) * multiplier
+    end
+  end
+end
+
+defmodule Test do
+  require Times
+  
+  Times.times_n(3)
+  Times.times_n(4)
+end
+
+IO.puts "3 * 4 = #{Test.times_3(4)}"
+IO.puts "4 * 5 = #{Test.times_4(5)}"
